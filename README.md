@@ -1,4 +1,5 @@
 
+
 # Практическая работа №2
 
 ## Варианты и задания
@@ -8,7 +9,7 @@
 
 ##### **Вариант 17. Разность сумм четных и нечетных кубов**
 
-На вход подается число n &#8712; N : n &le; 2147483647, а также n чисел Xi ∈ Z : |Xi| &le; 2147483647 для любого целого *i* от 1 до *n*. Вывести значение $$ \sum (-1)^i \cdot X^2_i $$,  где i от 1 до *n*.
+На вход подается число n &#8712; N : n &le; 2147483647, а также n чисел Xi ∈ Z : |Xi| &le; 2147483647 для любого целого *i* от 1 до *n*. Вывести значение $$ \sum (-1)^i \cdot X^2_i $$  где i от 1 до *n*.
 
 
 ---
@@ -73,8 +74,8 @@ $ git push -u origin pr2
  
 |                |Author                         |Link                         |
 |----------------|-------------------------------|-----------------------------|
-|Github         |`Anastasiya Kovaleva`            |https://github.com/AnastasiyaKovaleva18/timp        |
-|Markdown          |`Adam Pritchard`            |https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet |
+|Github          |`Anastasiya Kovaleva`          |https://github.com/AnastasiyaKovaleva18/timp        |
+|Markdown        |`Adam Pritchard`               |https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet |
 
 ---
 
