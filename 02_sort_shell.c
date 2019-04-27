@@ -33,19 +33,19 @@ int main()
     int n, i, operation = 0;
     scanf("%d", &n);
 
-    int *arr = (int*)malloc(sizeof(int)*n);
+    int *array = (int*)malloc(sizeof(int)*n);
 
     for (i = 0; i < n; i++)
         scanf("%d",&arr[i]);
 
-    operation += shell_sort(arr, n);
+    operation += shell_sort(array, n);
 
     for (i = 0; i < n; i++)
-		printf("%d ", arr[i]);
+		printf("%d ", array[i]);
 
 	printf("\n");
     printf("%d\n", operation);
-    free(arr);
+    free(array);
 
     return 0;
 }

@@ -3,35 +3,40 @@
 
 int q_Sort(int *array, int first, int last)
 {
-    int c, count;
+    int c, temp = 0, operation = 0;
     int f = first, l = last;
     c = array[(f + l) / 2];
    
-    for (;f < l;) 
+    do 
     {
         while (array[f] < c)
             f++;
         while (array[l] > c)
             l--;
+
+        operation++;
         if (f <= l)
         {
-            count = array[f];
+            temp = array[f];
             array[f] = array[l];
-            array[l] = count;
+            array[l] = temp;
             f++;
             l--;
+            operation++;
         }
-    }
+    } while (f <= l);
 
-    if (first < l) q_Sort(array, first, l);
-    if (f < last) q_Sort(array, f, last);
+    if (first < l) 
+        operation += q_Sort(array, first, l);
+    if (f < last) 
+        operation += q_Sort(array, f, last);
 
-    return 0;
+    return operation;
 }
 
 int main()
 {
-    int n, i;
+    int n, i, operation = 0;
     scanf("%d",&n);
 
     int *array = malloc(sizeof(int) * n);
@@ -40,12 +45,13 @@ int main()
         scanf("%d",&array[i]);
     int first = 0, last = n - 1;
 
-    q_Sort(array, first, last);
+    operation = q_Sort(array, first, last);
 
     for (i = 0; i < n; i++)
         printf("%d ", array[i]);
 
     printf("\n");
+    printf("%d\n", operation);
     free(array);
 
     return 0;

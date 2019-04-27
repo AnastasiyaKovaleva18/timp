@@ -1,72 +1,74 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap(int *x, int *y)
+int siftDown(int *array, int first, int end)
 {
-    int m = *x;
-    *x = *y;
-    *y = m;
+    int maxChild;
+    int done = 0; 
+    int operation = 0;
+                  
+    while ((first * 2 <= end) && (!done))
+    {
+        if (first * 2 == end)  
+            maxChild = first * 2; 
+
+        else if (array[first * 2] > array[first * 2 + 1])
+            maxChild = first * 2;
+        else
+            maxChild = first * 2 + 1;
+        
+        operation++;
+        if (array[first] < array[maxChild])
+        {
+            int temp = array[first]; 
+            array[first] = array[maxChild];
+            array[maxChild] = temp;
+            first = maxChild;
+            operation++;
+        }
+        else          
+            done = 1; 
+    }
+
+    return operation;
 }
 
-int pyramid_sort(int *array, int n)
-{
-    int b, s, i;
-
-    while (1)
+int pyramid_sort(int *array, int array_size)
+{  
+    int operation = 0;
+    
+    for (int i = (array_size / 2) - 1; i >= 0; i--)
+       operation += siftDown(array, i, array_size - 1);
+   
+    for (int i = array_size - 1; i >= 1; i--)
     {
-        b = 0;
-        for (i = 0; i < n; ++i)
-        {
-            if (i * 2 + 2 + s < n)
-            {
-                if (array[i + s] > array[i * 2 + 1 + s] || array[i + s] > array[i * 2 + 2 + s])
-                {
-                    if (array[i * 2 + 1 + s] < array[i * 2 + 2 + s])
-                    {
-                        swap(&array[i + s], &array[i * 2 + 1 + s]);
-                        b = 1;
-                    }
-                    else if (array[i * 2 + 2 + s] < array[i * 2 + 1 + s])
-                    {
-                        swap(&array[i + s], &array[i * 2 + 2 + s]);
-                        b = 1;
-                    }
-                }
-            }
-            else if (i * 2 + 1 + s < n)
-            {
-                if (array[i + s] > array[i * 2 + 1 + s])
-                {
-                    swap(&array[i + s], &array[i * 2 + 1 + s]);
-                    b = 1;
-                }
-            }
-        }
-        if (!b)
-            s++;
-        if (s + 2 == n)
-            break;
+        int temp = array[0];
+        array[0] = array[i];
+        array[i] = temp;
+        operation++;
+        operation += siftDown(array, 0, i - 1);
     }
-    return 0;
+
+    return operation;
 }
 
 int main()
 {
-    int n, i;
-    scanf("%d",&n);
+    int n, i, operation = 0;
+    scanf("%d", &n);
 
     int *array = malloc(sizeof(int) * n);
 
     for (i = 0; i < n; i++)
         scanf("%d",&array[i]);
-    int first = 0, last = n - 1;
-
-    pyramid_sort(array, n);
+    
+    operation = pyramid_sort(array, n);
 
     for (i = 0; i < n; i++)
         printf("%d ", array[i]);
 
     printf("\n");
+    printf("%d\n", operation);
     free(array);
 
     return 0;
